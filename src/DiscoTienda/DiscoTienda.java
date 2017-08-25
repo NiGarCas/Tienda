@@ -32,5 +32,8 @@ public class DiscoTienda {
     public DiscoTienda(String nombre) {
         this.nombre = nombre;
     }
+    
+    public void agregar_disco(String nombre, String artista, String genero) {
+    }
 }
 
