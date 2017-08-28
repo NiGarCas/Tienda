@@ -15,6 +15,7 @@ public class Disco {
     private String artista;
     private String genero;
     private String imagen_caratula;
+    private int cantidad_canciones;
     private Cancion[] canciones;
 
     public void setNombre(String nombre) {
@@ -31,6 +32,10 @@ public class Disco {
 
     public void setImagen_caratula(String imagen_caratula) {
         this.imagen_caratula = imagen_caratula;
+    }
+    
+    public void setCantidad_canciones(int cantidad_canciones) {
+        this.cantidad_canciones = cantidad_canciones;
     }
 
     public void setCanciones(Cancion[] canciones) {
@@ -52,15 +57,22 @@ public class Disco {
     public String getImagen_caratula() {
         return imagen_caratula;
     }
+    
+    public int getCantidad_canciones() {
+        return cantidad_canciones;
+    }
 
     public Cancion[] getCanciones() {
         return canciones;
     }
 
-    public Disco(String nombre, String artista, String genero) {
+    public Disco(String nombre, String artista, String genero, String imagen_caratula) {
         this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
+        this.imagen_caratula = imagen_caratula;
+        this.cantidad_canciones = 0;
+        this.canciones = new Cancion[100];
     }
  
     

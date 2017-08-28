@@ -47,6 +47,10 @@ public class Cancion {
     public double getDuracion() {
         return duracion;
     }
+    
+    public double getTamano() {
+        return tamano;
+    }
 
     public double getCalidad() {
         return calidad;
