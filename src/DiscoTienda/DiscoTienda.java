@@ -44,22 +44,47 @@ public class DiscoTienda {
         this.discos = new Disco [100];
     }
     
-    public void agregar_disco(String nombre, String artista, String genero, String imagen_caratula) {
-        this.discos[this.cantidad_discos] = new Disco (nombre, artista, genero, imagen_caratula);
-        this.cantidad_discos = this.cantidad_discos + 1;
+    public boolean agregar_disco(String nombre, String artista, String genero, String imagen_caratula) {
+        if (this.cantidad_discos < 100){
+            this.discos[this.cantidad_discos] = new Disco (nombre, artista, genero, imagen_caratula);
+            this.cantidad_discos = this.cantidad_discos + 1;
+            return true;
+        }else{
+            return false;
+        }
+        
     }
     
-    public void agregar_cancion(int numero_disco, String nombre, double precio, double duracion, double tamano, double calidad) {
-        this.discos[numero_disco - 1].getCanciones()[this.discos[numero_disco - 1].getCantidad_canciones()] = new Cancion (nombre, precio, duracion, tamano, calidad);
-        this.discos[numero_disco - 1].setCantidad_canciones(this.discos[numero_disco - 1].getCantidad_canciones() + 1);
+    public boolean agregar_cancion(String nombre_disco, String nombre, double precio, double duracion, double tamano, double calidad) {
+        Disco disco = null;
+        for (int i = 0; i < this.cantidad_discos; i = i + 1){
+            if (this.discos[i].getNombre().equals(nombre_disco)){
+                disco = this.discos[i];
+                this.discos[i].agregar_cancion(nombre, precio, duracion, tamano, calidad);
+            }
+        }
+        if (disco.agregar_cancion(nombre, precio, duracion, tamano, calidad) == true){
+            return true;
+        }else{
+            return false;
+        }
     }
     
-    public void info_cancion (int numero_disco, int numero_cancion){
-        System.out.println("Nombre:" + this.discos[numero_disco - 1].getCanciones()[numero_cancion - 1].getNombre());
-        System.out.println("Precio:$" + this.discos[numero_disco - 1].getCanciones()[numero_cancion - 1].getPrecio());
-        System.out.println("Duracion:" + this.discos[numero_disco - 1].getCanciones()[numero_cancion - 1].getDuracion() + "minutos");
-        System.out.println("Tamano:" + this.discos[numero_disco - 1].getCanciones()[numero_cancion - 1].getTamano() + "MB");
-        System.out.println("Calidad:" + this.discos[numero_disco - 1].getCanciones()[numero_cancion - 1].getCalidad() + "Kbps");
+    public boolean info_cancion(String nombre_disco, String nombre_cancion){
+        Disco disco = null;
+        for (int i = 0; i < this.cantidad_discos; i = i + 1){
+            if (this.discos[i].getNombre().equals(nombre_disco)){
+                disco = this.discos[i];
+                this.discos[i].info_cancion(nombre_cancion);
+                break;
+            }
+        }
+        if (disco.info_cancion(nombre_cancion) == true){
+            return true;
+        }else{
+            return false;
+        }
     }
+    
 }
 

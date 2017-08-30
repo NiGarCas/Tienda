@@ -74,6 +74,35 @@ public class Disco {
         this.cantidad_canciones = 0;
         this.canciones = new Cancion[100];
     }
+    
+    public boolean agregar_cancion (String nombre, double precio, double duracion, double tamano, double calidad){
+        if (this.cantidad_canciones < 100){
+            this.canciones[this.cantidad_canciones] = new Cancion (nombre, precio, duracion, tamano, calidad);
+            this.cantidad_canciones = this.cantidad_canciones + 1;
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean info_cancion (String nombre_cancion){
+        Cancion cancion = null;
+        for (int i = 0; i < this.cantidad_canciones; i = i + 1){
+            if (this.canciones[i].getNombre().equals(nombre_cancion)){
+                cancion = this.canciones[i];
+                break;
+            }
+        }
+        if (cancion != null){
+            System.out.println("Nombre:" + cancion.getNombre());
+            System.out.println("Precio:$" + cancion.getPrecio());
+            System.out.println("Duracion:" + cancion.getDuracion() + "minutos");
+            System.out.println("Tamano:" + cancion.getTamano() + "MB");
+            System.out.println("Calidad:" + cancion.getCalidad() + "Kbps");
+            return true;
+        }else{
+            return false;
+        }
+    }
  
     
 }

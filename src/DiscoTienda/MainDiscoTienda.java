@@ -35,16 +35,23 @@ public class MainDiscoTienda {
                 String genero = flujoEntrada.next();
                 System.out.println("Describa la caratula del disco: ");
                 String imagen_caratula = flujoEntrada.next();
+                System.out.println(" ");
                 miDiscoTienda.agregar_disco(nombredisco, artista, genero, imagen_caratula);
+                if (miDiscoTienda.agregar_disco(nombredisco, artista, genero, imagen_caratula) == true){
+                    System.out.println("Disco agregado exitosamente");
+                }else{
+                    System.out.println("Maxima cantidad de discos alcanzada. No fue posible agregar disco.");
+                }
                 break;
             case 2:
                 System.out.println("LISTA DE DISCOS");
                 System.out.println(" ");
-                for (int i = 0; i < miDiscoTienda.getCantidad_discos(); i = i+ 1){
-                    System.out.println((i+1) + "." + miDiscoTienda.getDiscos()[i].getNombre());
+                Disco[] discos = miDiscoTienda.getDiscos();
+                for (int i = 0; i < miDiscoTienda.getCantidad_discos(); i++) {
+                    System.out.println((i+1) + " " + discos[i].getNombre());
                 }
-                System.out.println("Ingrese numero de disco donde desea agregar la cancion: ");
-                int numero_disco = flujoEntrada.nextInt();
+                System.out.println("Ingrese nombre de disco donde desea agregar la cancion: ");
+                String nombre_disco = flujoEntrada.next();
                 System.out.println("Escriba el nombre de la cancion: ");
                 String nombrecancion = flujoEntrada.next();
                 System.out.println("Escriba el precio de la cancion ($): ");
@@ -55,22 +62,33 @@ public class MainDiscoTienda {
                 double tamano = flujoEntrada.nextDouble();
                 System.out.println("Escriba la calidad de la cancion (Kbps): ");
                 double calidad = flujoEntrada.nextDouble();
-                miDiscoTienda.agregar_cancion(numero_disco, nombrecancion, precio, duracion, tamano, calidad);
+                System.out.println(" ");
+                miDiscoTienda.agregar_cancion(nombre_disco, nombrecancion, precio, duracion, tamano, calidad);
+                if (miDiscoTienda.agregar_cancion(nombre_disco, nombrecancion, precio, duracion, tamano, calidad)== true){
+                    System.out.println("Cancion agregada exitosamente");
+                }else{
+                    System.out.println("No fue posible agregar cancion");
+                    System.out.println("Posibles causas: ");
+                    System.out.println("1. Disco no existente");
+                    System.out.println("2. Maxima cantidad de canciones alcanzada");
+                }
                 break;
             case 3:
                 System.out.println("LISTA DE DISCOS");
                 System.out.println(" ");
-                for (int i = 0; i < miDiscoTienda.getCantidad_discos(); i = i+ 1){
-                    System.out.println((i+1) + "." + miDiscoTienda.getDiscos()[i].getNombre());
+                Disco[] discos_ = miDiscoTienda.getDiscos();
+                for (int i = 0; i < miDiscoTienda.getCantidad_discos(); i++) {
+                    System.out.println((i+1) + " " + discos_[i].getNombre());
                 }
-                System.out.println("Ingrese numero de disco al que pertenece la cancion: ");
-                int numerodisco = flujoEntrada.nextInt();
-                for (int j = 0; j < miDiscoTienda.getDiscos()[numerodisco - 1].getCantidad_canciones(); j = j+ 1){
-                    System.out.println((j+1) + "." + miDiscoTienda.getDiscos()[numerodisco - 1].getCanciones()[j].getNombre());
+                System.out.println("Ingrese nombre del disco al que pertenece la cancion: ");
+                String nombreDisco = flujoEntrada.next();
+                System.out.println("Ingrese nombre de la cancion que desea revisar: ");
+                String nombreCancion = flujoEntrada.next();
+                System.out.println(" ");
+                miDiscoTienda.info_cancion(nombreDisco, nombreCancion);
+                if ( miDiscoTienda.info_cancion(nombreDisco, nombreCancion) != true){
+                    System.out.println("Disco y/o cancion inexistentes.No fue posible mostrar informacion");
                 }
-                System.out.println("Ingrese numero de disco donde desea agregar la cancion: ");
-                int numerocancion = flujoEntrada.nextInt();
-                miDiscoTienda.info_cancion(numerodisco, numerocancion);
                 break;
             default:
                 System.out.println("OPCION NO DISPONIBLE");
